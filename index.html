@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pagina de prueba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+        form{
+    text-decoration: none; 
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+        }
+
+        input{
+
+            padding: 5px;
+            font-weight: 300;
+            font-size: 15px;
+            background-color: #989b8b;
+
+        }
+
+       button{
+
+            font-weight: 300;
+            font-size: 15px;
+            background-color: #6adb54;
+       }
+    </style>
+</head>
+<body>
+    <h3>Ejercicio Node, Express, Jquery</h3>
+    <form action="">
+
+        <input type="text" placeholder="Nombre" name="nombre" id="nombre" >
+        <input type="text" placeholder="Clave" name="clave" id="clave">
+    </form>
+    <form2 action="">
+            <button id="act" type="button"> Enviar </button>
+            <button id="delete" type="button">Eliminar</button>
+     </form2>  
+</body>
+
+<script>
+    //cunado el documento este listo y todos los objetos 
+    $(document).ready( function(){
+        //Programacion del boton act para obtener datos del input.
+        $("#act").on("click", function(event){
+            console.log(event);
+            var alumno = { }; //Creacion de objeto con la info necesaria.
+            alumno.nombre = $("#nombre").val();
+            alumno.clave = $("#clave").val();
+            //Invocamos a la funcion para llamadas post y mandamos el obeto.
+            sendPOSTRequest(alumno);
+        });
+    });
+
+    $(document).ready( function(){
+        //Programacion del boton delete para obtener datos del input.
+        $("#delete").on("click", function(event){
+            console.log(event);
+            var alumno = { }; //Creacion de objeto con la info necesaria.
+            alumno.nombre = $("#nombre").val();
+            alumno.clave = $("#clave").val();
+            //Invocamos a la funcion para llamadas post y mandamos el obeto.
+            sendPOSTRequest(alumno);
+        });
+    });
+
+
+    function sendPOSTRequest(body_object){
+        //Llamada post al backend usando jquery.
+        //console.log("Objeto enviado por POST: " );
+        //console.log(body_object);
+        
+        $.get("http://localhost:3000/alumnos", body_object , 
+        function(){
+            alert("Alumno enviado.");
+        });
+    }
+
+</script>
+</html>
